@@ -2,7 +2,7 @@
 <h1 align="center"> Mock Shopify Guide </h1>
 
 <p align="center">
-  The easiest and quickest way to a build a Shopify/E-Commerce Storefront without having to connect to a real Shopify store.
+  The easiest and quickest way to a build a Shopify E-Commerce Storefront without having to connect to a real Shopify store.
 </p>
 
 <p align="center">
@@ -18,117 +18,15 @@
 - Internationalization support
 - Customer authentication support
 
-## Sample Stores
-
-`Mock Shopify` has been tested with some leading E-Commerce frameworks to ensure
-it works as expected. The example storefronts are hosted on Google Cloud Run and
-are available for testing.
-
-- [NextJS Commerce](https://nextjs-mock-shopify.faker-server.dev)
-- [Shopify Hydrogen](https://hydrogen-mock-shopify.faker-server.dev)
-
-## Getting Started
-
-Getting started with `Mock Shopify` is easy. You can start with using pre-made example storefronts like NextJS Commerce or Shopify Hydrogen react framework.
-
-### [Example Hydrogen Store](https://hydrogen-mock-shopify.faker-server.dev)
-
-The [Hydrogen](https://hydrogen.shopify.dev/) framework is a Shopify official
-storefront. The example storefront is a clone of the Shopify Hydrogen Starter.
-It points to the mock Shopify GraphQL API to pull data with no changes to the
-codebase.
-
-- Follow the [instructions](https://hydrogen.shopify.dev/) to create a new
-  storefront with Hydrogen
-- Change the shopify domain to the mock shopify URL in the `.env` file
-
-#### Changes To Hydrogen Codebase
-
-The only change to the codebase is the `PUBLIC_STORE_DOMAIN` variable in the
-`.env`. this is an example of the `.env` file
-
-```env
-SESSION_SECRET="mock-secret"
-PUBLIC_STOREFRONT_API_TOKEN="mock-api-token"
-PRIVATE_STOREFRONT_API_TOKEN="mock-api-token"
-PUBLIC_STORE_DOMAIN="shopify.faker-server.dev/graphql"
-PUBLIC_STOREFRONT_ID="foobar"
-```
-
-#### Internationalization
-
-`Mock Shopify` supports internalization. The default country is `US`. To change
-the country which mostly affects the currency, use the `country` variable in the
-graphql variable.
-
-The example query below will return the cart in the `FR` (French) locale
-
-```graphql copy
-query CartQuery($country: CountryCode = ZZ, $language: LanguageCode) @inContext(country: $country, language: $language) {
-  cart(id: "some-cart-id") {
-    cost {
-      totalAmount {
-        amount
-        currencyCode
-      }
-    }
-  }
-}
-```
-
-```json copy
-{
-  "country": "FR",
-  "language": "fr"
-}
-```
-
-To see this in action using the hydrogen example shop
-
-- [French Shop](https://hydrogen-shopify.faker-server.com/fr-FR)
-- [British Shop](https://hydrogen-shopify.faker-server.com/en-GB)
-- [Japanese Shop](https://hydrogen-shopify.faker-server.com/ja-JP)
-
-### [Example NextJS E-Commerce](https://nextjs-commerce.faker-server.com)
-
-The [NextJS E-Commerce](https://github.com/vercel/commerce) framework is a
-popular React framework for building E-Commerce storefronts. The example
-storefront is a clone of the NextJS E-Commerce Starter. It points to the mock
-Shopify GraphQL API to pull data with no changes to the codebase.
-
-- Clone the NextJS commerce repo
-- Follow the instructions to run the application
-- Change the shopify domain to the mock shopify URL in the `.env` file
-
-#### Changes To NextJS Codebase
-
-The only change to the codebase is the `SHOPIFY_STORE_DOMAIN` variable in the
-`.env`. this is an example of the `.env` file
-
-```env
-COMPANY_NAME="Mock Shop."
-TWITTER_CREATOR="@sayjava"
-TWITTER_SITE="https://github.com/sayjava"
-SITE_NAME="Mock-Shop"
-SHOPIFY_REVALIDATION_SECRET="mock-secret"
-SHOPIFY_STOREFRONT_ACCESS_TOKEN="mock-token"
-SHOPIFY_STORE_DOMAIN="shopify.fakerserver.dev/graphql"
-```
-
-Add the placeholder domain to the `next.config.js` file to be able to render the
-product images
-
-```javascript
-{
-  protocol: 'https',
-  hostname: 'via.placeholder.com',
-  pathname: '/**'
-}
-```
-
 > [!NOTE] Mock Shopify GraphQL API was built to the specification of the Version
 > 2023-07 of the GraphQL API
 
+## Getting Started
+
+It is very easy to get started with `Mock Shopify`. Just point your application to the mock Shopify GraphQL API endpoint and you are good to go. Below are some examples of how to get started with `Mock Shopify` using different frameworks.
+
+- [Shopify Hydrogen Guide](/hydrogen.md)
+- [NextJS E-Commerce Guide](/nextjs.md)
 
 ## Supported Shopify Operations
 
@@ -173,17 +71,11 @@ Therefore, all operations supported by the Shopify Storefront API are supported
 by `Mock Shopify`. For a full list of operations, please see the
 [Shopify Storefront API](https://shopify.dev/docs/api/storefront/2023-07).
 
-`Mock Shopify` however supports some special values that can be used to simulate
-different scenarios. This document will cover these special values.
 
 ### Products
 
 Fetch products using the Shopify product ID or product handle. This allows you
 to build out product UI components to reflect different product state.
-
-> [!NOTE] All product properties supported by the Shopify Storefront API are
-> supported by `Mock Shopify`. For a full list of properties, please see the
-> [Shopify Storefront API](https://shopify.dev/docs/api/storefront/2023-07/objects/product).
 
 > [!NOTE] The `Mock Shopify` product response will always return a product
 > regardless of the product ID or handle. This allows developers to build out
@@ -193,8 +85,6 @@ to build out product UI components to reflect different product state.
 > sized.
 
 #### Alternative Product Scenarios
-
-Easily simulate different product scenarios using these product handles.
 
 | Product Handle          | Description                                        |
 | ----------------------- | -------------------------------------------------- |
@@ -233,9 +123,6 @@ given product ID.
 
 #### Alternative Product Recommendation Scenario
 
-Easily simulate different product recommendation scenarios using this product
-handles.
-
 | Product Handle               | Description                                 |
 | ---------------------------- | ------------------------------------------- |
 | `no-recommendations-product` | Simulates a product that has no recommended |
@@ -247,15 +134,9 @@ handles.
 allows you to build out collection UI components to reflect different collection
 state.
 
-> [!NOTE] All collection properties supported by the Shopify Storefront API are
-> supported by `Mock Shopify`. For a full list of properties, please see the
-> [Shopify Storefront API](https://shopify.dev/docs/api/storefront/2023-07/objects/Collection).
-
 > [!NOTE] The `Mock Shopify` collection response will always return a collection
 
 #### Alternative Collection Scenarios
-
-Easily simulate different collection scenarios using these collection handles.
 
 | Handle                 | Description                              |
 | ---------------------- | ---------------------------------------- |
