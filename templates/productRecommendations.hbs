@@ -1,0 +1,7 @@
+[
+    {{#unless (eq context.tree.productRecommendations.__args.productId "no-recommendation-product")}}
+        {{#repeat 5}} 
+            {{> product }}
+        {{/repeat}}
+    {{/unless}}
+]
