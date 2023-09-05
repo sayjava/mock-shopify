@@ -1,8 +1,7 @@
-
 <h1 align="center"> Mock Shopify Guide </h1>
 
 <p align="center">
-  The easiest and quickest way to a build a Shopify E-Commerce Storefront without having to connect to a real Shopify store.
+The most straightforward and efficient method to create a Shopify E-Commerce Storefront without the need to connect to an actual Shopify store
 </p>
 
 <p align="center">
@@ -12,18 +11,21 @@
 ## Features
 
 - No Shopify Store required.
-- Simulate different `product`, `collection`, `cart`, `customer` and `search` scenarios
+- Simulate different `product`, `collection`, `cart`, `customer` and `search`
+  scenarios
 - Simulate blocks and articles
 - Simulate different product recommendation scenarios
 - Internationalization support
 - Customer authentication support
 
-> [!NOTE] Mock Shopify GraphQL API was built to the specification of the Version
-> 2023-07 of the GraphQL API
+> [!IMPORTANT] Mock Shopify GraphQL API was built to the specification of the
+> Version 2023-07 of the GraphQL API
 
 ## Getting Started
 
-It is very easy to get started with `Mock Shopify`. Just point your application to the mock Shopify GraphQL API endpoint and you are good to go. Below are some examples of how to get started with `Mock Shopify` using different frameworks.
+It is very easy to get started with `Mock Shopify`. Just point your application
+to the mock Shopify GraphQL API endpoint and you are good to go. Below are some
+examples of how to get started with `Mock Shopify` using different frameworks.
 
 - [Shopify Hydrogen Guide](/hydrogen.md)
 - [NextJS E-Commerce Guide](/nextjs.md)
@@ -62,7 +64,9 @@ returns an error.
 
 ## Local/Offline Setup
 
-Local setup is coming soon
+```bash
+docker run --rm -p 8080:8080 ghcr.io/sayjava/mock-shopify:0.2.0
+```
 
 ## Documentation
 
@@ -71,15 +75,13 @@ Therefore, all operations supported by the Shopify Storefront API are supported
 by `Mock Shopify`. For a full list of operations, please see the
 [Shopify Storefront API](https://shopify.dev/docs/api/storefront/2023-07).
 
-
 ### Products
 
 Fetch products using the Shopify product ID or product handle. This allows you
 to build out product UI components to reflect different product state.
 
 > [!NOTE] The `Mock Shopify` product response will always return a product
-> regardless of the product ID or handle. This allows developers to build out
-> product UI components to reflect different product state.
+> regardless of the product ID or handle.
 
 > [!NOTE] The `Mock Shopify` product images are placeholders appropriately
 > sized.
@@ -159,9 +161,8 @@ state.
 
 ### Cart
 
-Any cart id will always return a cart. This allows developers to build out cart
-UI components to reflect different cart state except for when using control
-headers.
+Any `cart id` will always return a cart. This allows developers to build out
+cart UI components to reflect different cart state.
 
 The number of items in the cart is determined by the `first` query argument of
 the `cart.lines` query.
@@ -217,8 +218,8 @@ the Shopify Storefront API.
 
 #### Alternative Search Scenarios
 
-| Query      | Description                                |
-| ---------- | ------------------------------------------ |
+| Query        | Description                                |
+| ------------ | ------------------------------------------ |
 | `no-results` | Simulates a search that returns no results |
 
 ### Predictive Search
@@ -230,8 +231,8 @@ perfect for build out UIs.
 
 #### Alternative Predictive Search Control headers
 
-| Header     | Description                                           |
-| ---------- | ----------------------------------------------------- |
+| Header       | Description                                           |
+| ------------ | ----------------------------------------------------- |
 | `no-results` | Simulates a predictive search that returns no results |
 
 ### Customer
@@ -249,7 +250,8 @@ perfect for build out UIs.
 
 ### Shop Example
 
-> [!NOTE] Any email and password combination will work for authentication. The site does not keep any state.
+> [!NOTE] Any email and password combination will work for authentication. The
+> site does not keep any state.
 
 - [Customer Login](https://hydrogen-mock-shopify.faker-server.dev/login)
 - [Customer Orders](https://hydrogen-mock-shopify.faker-server.dev/account/orders)
